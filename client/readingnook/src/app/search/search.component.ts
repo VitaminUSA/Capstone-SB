@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenreService } from '../services/genre.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  allGenres;
+
+  constructor(private genreService: GenreService) {
+    this.allGenres = genreService.getAllGenres();
+   }
 
   ngOnInit(): void {
+    this.allGenres = this.genreService.getAllGenres();
   }
 
 }

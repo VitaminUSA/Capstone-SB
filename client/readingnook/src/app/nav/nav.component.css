@@ -1,0 +1,20 @@
+ul {
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    background-color: blue;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+}
+
+.navBar {
+    border: 1px solid black;
+}

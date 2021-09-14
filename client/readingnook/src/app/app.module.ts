@@ -10,6 +10,10 @@ import { NavComponent } from './nav/nav.component';
 import { GenreLinkComponent } from './genre-link/genre-link.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { GroupsComponent } from './groups/groups/groups.component';
+import { GroupTilesComponent } from './groups/group-tiles/group-tiles.component';
+import { AddGroupComponent } from './groups/add-group/add-group.component';
+import { EditGroupComponent } from './groups/edit-group/edit-group.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { SearchComponent } from './search/search.component';
     NavComponent,
     GenreLinkComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    GroupsComponent,
+    GroupTilesComponent,
+    AddGroupComponent,
+    EditGroupComponent
   ],
   imports: [
     BrowserModule,

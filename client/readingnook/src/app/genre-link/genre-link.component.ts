@@ -11,11 +11,11 @@ export class GenreLinkComponent implements OnInit {
   allGenres;
 
   constructor(private genreService: GenreService) {
-    this.allGenres = genreService.getGenres();
+    this.allGenres = genreService.getAllGenres();
    }
 
   ngOnInit(): void {
-    this.allGenres = this.genreService.getGenres();
+    this.allGenres = this.genreService.getAllGenres();
   }
 
 }

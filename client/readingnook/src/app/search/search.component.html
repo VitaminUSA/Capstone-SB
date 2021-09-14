@@ -1,1 +1,16 @@
-<p>search works!</p>
+<section class="searchBar">
+    <p>Search Component</p>
+    <select name="genre" id="genre">
+        <option value="noGenre">Genre</option>
+        <option *ngFor="let genre of allGenres" value="{{genre.id}}">{{genre.name}}</option>
+    </select>
+    <select name="orderBy" id="orderBy">
+        <option value="noSelection" selected>Order By</option>
+        <option value="orderByName">Name</option>
+        <option value="orderByCapacity">Capacity</option>
+    </select>
+    <input type="checkbox" id="hideFullGroup" name="hideFullGroup">
+    <label for="hideFullGroup">Hide Full Groups</label>
+    <input type="text" name="filterSearch" id="filterSearch">
+    <label for="filterSearch">Search</label>
+</section>

@@ -1,0 +1,19 @@
+<section *ngIf="addGroupForm">
+    <p>Add-Group Form</p>
+    <form>
+        <input type="text" id="groupName" autofocus formControlName="groupName" value="">
+        <select name="genreName" id="genreName" formControlName="genreName">
+            <option *ngFor="let genre of allGenres" value="{{genre.id}}">{{genre.name}}</option>
+        </select>
+        <label for="sphonsorName">Sponsor Name</label>
+        <input type="text" id="sponsorName" formControlName="sponsorName">
+        <label for="sponsorPhone">Sponsor Phone</label>
+        <input type="text" id="sponsorPhone" formControlName="sponsorPhone">
+        <label for="sponsorEmail">Sponsor Email</label>
+        <input type="text" id="sponsorEmail" formControlName="sponsorEmail">
+        <label for="maxGroupSize">Group Size</label>
+        <input type="number" id="maxGroupSize" value="0" min="0" max="100" step="1">
+        <input type="button" value="Add">
+    </form>
+</section>
+

@@ -1,0 +1,10 @@
+footer {
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    border-top: 3px solid black;
+}
+
+footer>* {
+    padding: 0 1em;
+}
