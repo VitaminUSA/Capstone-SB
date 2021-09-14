@@ -22,6 +22,7 @@ export class AddGroupComponent implements OnInit {
       groupName: [''],
       genreName: [''],
       sponsorName: [''],
+      sponsorPhone: [''],
       sponsorEmail: [''],
       groupSize: ['']
     });
@@ -34,6 +35,7 @@ export class AddGroupComponent implements OnInit {
       groupName: this.group.groupName,
       genreName: this.group.genreName,
       sponsorName: this.group.sponsorName,
+      sponsorPhone: this.group.sponsorPhone,
       sponsorEmail: this.group.sponsorEmail,
       groupSize: this.group.maxGroupSize
     });
