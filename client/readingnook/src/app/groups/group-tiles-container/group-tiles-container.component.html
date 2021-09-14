@@ -1,11 +1,21 @@
-<p>group-tiles-container works!</p>
-
-{{groups.length}}
+<p>group-tiles-container</p>
+<p>Results: {{groups.length}}</p>
 
 <section *ngIf="groups.length > 0">
-test
+    groups
+    <div *ngFor="let group of groups" style="display:flexbox; border: 1px solid black;">
+        <h3>{{group.genreName}}</h3>
+        <p>{{group.groupName}}</p>
+        <p>{{group.sponsorName}}</p>
+        <p>{{group.sponsorEmail}}</p>
+        <p>{{group.members.length}} / {{group.maxGroupSize}}</p>
+        <p>
+            <input type="button" value="Join">
+            <input type="button" value="Edit">
+        </p>
+    </div>
 </section>
 
 <section *ngIf="groups.length == 0">
-    test2
+    No Groups Found
 </section>
