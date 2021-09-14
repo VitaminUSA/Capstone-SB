@@ -12,12 +12,12 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { GroupsComponent } from './groups/groups/groups.component';
 import { GroupTilesComponent } from './groups/group-tiles/group-tiles.component';
-import { AddGroupComponent } from './groups/add-group/add-group.component';
-import { EditGroupComponent } from './groups/edit-group/edit-group.component';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GroupTilesContainerComponent } from './groups/group-tiles-container/group-tiles-container.component';
+import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.component';
 
 
 @NgModule({
@@ -32,8 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SearchComponent,
     GroupsComponent,
     GroupTilesComponent,
-    AddGroupComponent,
-    EditGroupComponent
+    GroupTilesContainerComponent,
+    AddEditGroupComponent
   ],
   imports: [
     BrowserModule,

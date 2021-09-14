@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Group } from 'src/app/models/Group';
 
 @Component({
   selector: 'app-groups',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupsComponent implements OnInit {
 
-  constructor() { }
+  groups: Group[];
+
+  constructor() {
+    this.groups = [];
+  }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GenreLinkComponent } from './genre-link/genre-link.component';
-import { AddGroupComponent } from './groups/add-group/add-group.component';
+import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.component';
 import { GroupsComponent } from './groups/groups/groups.component';
 import { HomeComponent } from './home/home.component';
 
@@ -12,8 +12,8 @@ const routes: Routes = [{
     { path: 'genres', component: GenreLinkComponent },
     { path: 'home', component: HomeComponent },
     { path: 'groups', component: GroupsComponent },
-    { path: 'addGroup', component: AddGroupComponent}
-    //TODO: wildcard
+    { path: 'addGroup', component: AddEditGroupComponent },
+    { path: '**', component: HomeComponent }
   ]
 }];
 
