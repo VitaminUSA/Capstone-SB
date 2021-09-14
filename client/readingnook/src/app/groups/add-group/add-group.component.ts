@@ -16,15 +16,16 @@ export class AddGroupComponent implements OnInit {
   allGenres;
   group: Group;
 
+  //TODO: Validators for form fields
+
   createForm(): void {
     this.addFormGroup = this.fb.group({
-      id: [''],
       groupName: [''],
       genreName: [''],
       sponsorName: [''],
       sponsorPhone: [''],
       sponsorEmail: [''],
-      groupSize: ['']
+      groupSize: ['0']
     });
   }
 
@@ -45,8 +46,9 @@ export class AddGroupComponent implements OnInit {
     this.addFormGroup.reset();
   }
 
-  back(): void {
-    this.location.back();
+  addGroup(group: Group): void {
+    console.log(group);
+    this.location.back(); //Todo: Preserve previous state of page? Or do a popup for this add group entirely
   }
 
   constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService) {

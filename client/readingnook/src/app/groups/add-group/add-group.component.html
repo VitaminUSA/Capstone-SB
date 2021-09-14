@@ -3,7 +3,7 @@
     <form [formGroup]="addFormGroup">
         <input type="text" id="groupName" autofocus formControlName="groupName" value="">
         <select name="genreName" id="genreName" formControlName="genreName">
-            <option *ngFor="let genre of allGenres" value="{{genre.id}}">{{genre.name}}</option>
+            <option *ngFor="let genre of allGenres" value="{{genre.name}}">{{genre.name}}</option>
         </select>
         <label for="sponsorName">Sponsor Name</label>
         <input type="text" id="sponsorName" formControlName="sponsorName">
@@ -12,8 +12,8 @@
         <label for="sponsorEmail">Sponsor Email</label>
         <input type="text" id="sponsorEmail" formControlName="sponsorEmail">
         <label for="maxGroupSize">Group Size</label>
-        <input type="number" id="maxGroupSize" value="0" min="0" max="100" step="1">
-        <input type="button" value="Add">
+        <input type="number" id="maxGroupSize" value="0" min="0" max="100" step="1" formControlName="groupSize">
+        <input type="button" value="Add" (click)="addGroup(addFormGroup.value)">
     </form>
 </section>
 
