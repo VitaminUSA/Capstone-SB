@@ -12,13 +12,9 @@ export class GroupTilesContainerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    if(localStorage.getItem('selectedOrgId')) {
-      console.log('genreId is set');
-    }
-  }
+  ngOnInit(): void {}
 
-  changeGroups(): void {
+  resetGroups(): void {
     this.groups = [];
   }
 

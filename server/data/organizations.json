@@ -1,21 +1,21 @@
 [
 	{
-		"name": "Organization One",
+		"name": "Horror",
 		"id": "Org1",
 		"description": "This is organization 1"
 	},
 	{
-		"name": "Organization Two",
+		"name": "Comedy",
 		"id": "Org2",
 		"description": "This is organization 2"
     },
     {
-		"name": "Organization Three",
+		"name": "Sci-Fi",
 		"id": "Org3",
 		"description": "This is organization 3" 
 	},
 	{
-		"name": "Organization Four",
+		"name": "Romance",
 		"id": "Org4",
 		"description": "This is organization 4"
 	}

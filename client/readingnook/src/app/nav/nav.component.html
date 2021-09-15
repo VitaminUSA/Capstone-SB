@@ -10,7 +10,7 @@
                 <a routerLink="genres" routerLinkActive="active">Genres</a>
             </li>
             <li [ngClass]="{active: isActive}">
-                <a routerLink="groups" routerLinkActive="active">Groups</a> 
+                <a routerLink="groups" [state]="{id:1, name:'Angular'}" routerLinkActive="active">Groups</a> 
             </li>
         </ul>
         </nav>

@@ -9,7 +9,6 @@ import { MainComponent } from './main/main.component';
 import { NavComponent } from './nav/nav.component';
 import { GenreLinkComponent } from './genre-link/genre-link.component';
 import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './search/search.component';
 import { GroupsComponent } from './groups/groups/groups.component';
 import { GroupTilesComponent } from './groups/group-tiles/group-tiles.component';
 
@@ -29,7 +28,6 @@ import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.co
     NavComponent,
     GenreLinkComponent,
     HomeComponent,
-    SearchComponent,
     GroupsComponent,
     GroupTilesComponent,
     GroupTilesContainerComponent,

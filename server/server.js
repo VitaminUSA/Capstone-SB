@@ -180,7 +180,7 @@ app.get("/api/groups/byorganization/:id", function (req, res) {
     let orgData = fs.readFileSync( __dirname + "/data/organizations.json", "utf8");
     orgData = JSON.parse(orgData);
 
-    let organization = orgData.find(element => element.OrganizationId.toLowerCase() == id.toLowerCase());
+    let organization = orgData.find(element => element.id.toLowerCase() == id.toLowerCase());
     if (organization == null)
     {
         res.status(404).send("Organization Not Found");
@@ -191,7 +191,7 @@ app.get("/api/groups/byorganization/:id", function (req, res) {
     data = JSON.parse(data);
 
     // find the matching groups for a specific organization
-    let matches = data.filter(element => element.OrganizationName == organization.OrganizationName);
+    let matches = data.filter(element => element.OrganizationName == organization.name);
 
     console.log("Returned data is: ");
     console.log(matches);
