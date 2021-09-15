@@ -16,4 +16,9 @@ export class GenreLinkComponent implements OnInit {
     this.allGenres = this.genreService.getAllGenres().subscribe((allGenres)=>{this.allGenres=allGenres});
   }
 
+  searchForGenre(id): void {
+    console.log(id);
+    localStorage.setItem('selectedOrgId', id);
+  }
+
 }

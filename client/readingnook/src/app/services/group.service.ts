@@ -11,8 +11,8 @@ export class GroupService {
 
   private baseUrl: string = 'http://localhost:8082/api/';
 
-  getAllGroups(): Observable<Group[]> {
-    return this.http.get<Group[]>(this.baseUrl + 'groups');
+  getAllGroups(): Observable<Group> {
+    return this.http.get<Group>(this.baseUrl + 'groups');
   }
 
   getGroupById(id: string): Observable<Group> {

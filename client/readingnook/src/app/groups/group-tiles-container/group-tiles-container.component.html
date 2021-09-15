@@ -1,13 +1,17 @@
 <p>group-tiles-container</p>
-<p>Results: {{groups.length}}</p>
+<input type="button" value="Reset?" (click)="changeGroups()">
 
-<section *ngIf="groups.length > 0">
-    groups
-    <section *ngFor="let group of groups">
-        <app-group-tiles [group]="group"></app-group-tiles>
+<ng-container *ngIf="groups != undefined">
+    <p>Results: {{groups.length}}</p>
+    <section *ngIf="groups.length > 0">
+        groups
+        <section *ngFor="let group of groups">
+            <app-group-tiles [group]="group"></app-group-tiles>
+        </section>
     </section>
-</section>
+    
+    <section *ngIf="groups.length == 0">
+        No Groups Found
+    </section>
+</ng-container>
 
-<section *ngIf="groups.length == 0">
-    No Groups Found
-</section>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { Group } from 'src/app/models/Group';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-groups',
@@ -10,35 +11,22 @@ import { Group } from 'src/app/models/Group';
 })
 export class GroupsComponent implements OnInit {
 
-  groups: Group[];
+  groupObservable$ = this.groupService.getAllGroups();
+  groups;
   editGroupFlag = true;
 
-  constructor() {
-
-    const group1 = new Group();
-    group1.genreName = "Horror";
-    group1.groupName = "Horror enthusiasts";
-    group1.id = 1;
-    group1.maxGroupSize = 20;
-    group1.members = [];
-    group1.sponsorEmail = "test@test.com";
-    group1.sponsorName = "Joe Johnson";
-    group1.sponsorPhone = "888-888-8888";
-
-    const group2 = new Group();
-    group2.genreName = "Horror";
-    group2.groupName = "Horror enthusiasts";
-    group2.id = 1;
-    group2.maxGroupSize = 20;
-    group2.members = [];
-    group2.sponsorEmail = "test@test.com";
-    group2.sponsorName = "Joe Johnson";
-    group2.sponsorPhone = "888-888-8888";
-
-    this.groups = [group1, group2];
+  constructor(private groupService: GroupService) {
+    /*
+    this.groupService.getAllGroups().subscribe((allGroups) => {
+      this.groups = allGroups
+      console.log(allGroups);
+      console.log(this.groups);
+    });
+    */
   }
 
   ngOnInit(): void {
+    
   }
 
 }
