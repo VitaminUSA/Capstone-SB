@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GenreService } from '../../services/genre.service';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -10,11 +10,11 @@ import { Group } from 'src/app/models/Group';
   styleUrls: ['./add-edit-group.component.css']
 })
 export class AddEditGroupComponent implements OnInit {
-  editGroupFlag = false;
+  @Input() editGroupFlag: boolean;
   addGroupFlag = true;
   addGroupForm: FormGroup;
   allGenres;
-  group: Group;
+  @Input() group?: Group;
 
   //TODO: Validators for form fields
 
@@ -63,13 +63,15 @@ export class AddEditGroupComponent implements OnInit {
     this.location.back(); //Todo: Preserve previous state of page? Or do a popup for this add group entirely
   }
 
-  constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService) {
-    this.allGenres = genreService.getAllGenres();
-    //this.createForm();
-    this.editGroupForm();
-   }
+  constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService) {}
 
   ngOnInit(): void {
-    this.allGenres = this.genreService.getAllGenres();
+    this.allGenres = this.genreService.getAllGenres().subscribe((allGenres)=>{this.allGenres=allGenres});
+    console.log(this.editGroupFlag);
+    if (this.editGroupFlag) {
+      this.editGroupForm();
+    } else {
+      this.createForm();
+    }
   }
 }

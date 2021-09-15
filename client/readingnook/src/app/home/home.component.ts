@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GenreService } from '../services/genre.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private genreService: GenreService) { }
 
   ngOnInit(): void {
+  }
+
+  test(): void {
+    alert('test');
+    //this.genreService.getAllGenres().subscribe((allGenres)=>{console.log(allGenres)});
   }
 
 }

@@ -10,12 +10,10 @@ export class GenreLinkComponent implements OnInit {
 
   allGenres;
 
-  constructor(private genreService: GenreService) {
-    this.allGenres = genreService.getAllGenres();
-   }
+  constructor(private genreService: GenreService) {}
 
   ngOnInit(): void {
-    this.allGenres = this.genreService.getAllGenres();
+    this.allGenres = this.genreService.getAllGenres().subscribe((allGenres)=>{this.allGenres=allGenres});
   }
 
 }

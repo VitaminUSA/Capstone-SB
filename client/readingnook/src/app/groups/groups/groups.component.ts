@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
 import { Group } from 'src/app/models/Group';
 
 @Component({
@@ -9,6 +11,7 @@ import { Group } from 'src/app/models/Group';
 export class GroupsComponent implements OnInit {
 
   groups: Group[];
+  editGroupFlag = true;
 
   constructor() {
 

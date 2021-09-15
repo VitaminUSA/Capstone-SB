@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Group } from 'src/app/models/Group';
 
 @Component({
   selector: 'app-group-tiles',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group-tiles.component.css']
 })
 export class GroupTilesComponent implements OnInit {
+
+  @Input() group: Group;
 
   constructor() { }
 

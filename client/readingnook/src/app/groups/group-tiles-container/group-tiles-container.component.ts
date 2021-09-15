@@ -8,7 +8,7 @@ import { Group } from 'src/app/models/Group';
 })
 export class GroupTilesContainerComponent implements OnInit {
 
-  @Input() groups: Group[]
+  @Input() groups: Group[];
 
   constructor() { }
 
