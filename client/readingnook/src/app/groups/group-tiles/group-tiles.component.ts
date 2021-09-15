@@ -9,11 +9,13 @@ import { Group } from 'src/app/models/Group';
 export class GroupTilesComponent implements OnInit {
 
   @Input() group: Group;
+  @Input() genres;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.group);
+    console.log(this.genres);
   }
 
 }

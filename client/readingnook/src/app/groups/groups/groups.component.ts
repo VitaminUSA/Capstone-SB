@@ -14,9 +14,10 @@ import { GroupService } from 'src/app/services/group.service';
 })
 export class GroupsComponent implements OnInit {
 
+  genrePlaceholderValue = "noGenre";
+  visible = true;
   groupObservable$;
   groups;
-  editGroupFlag = true;
   allGenres;
   selectedGenre;
 
@@ -27,6 +28,7 @@ export class GroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     const state = this.location.getState();
     if (state['searchFilter'] == 1) {
       this.selectedGenre = state['organization'].id;
@@ -34,17 +36,35 @@ export class GroupsComponent implements OnInit {
 
     this.groupObservable$ = this.groupService.getAllGroups();
     if (this.selectedGenre !== undefined) {
-      this.groupObservable$ = this.groupService.getGroupsByOrganizationId(this.selectedGenre);
+      this.groupByOrgId(this.selectedGenre);
     }
 
     this.allGenres = this.genreService.getAllGenres().subscribe((allGenres)=>{this.allGenres=allGenres});
-    this.groupObservable$.subscribe((groups)=>this.groups = groups);
-    this.isLoading = false;
+    this.observeGroup();
     console.log(this.location.getState());
   }
 
-  changeGroups(): void {
-    this.groups = [];
+  selectGenre(evt): void {
+    console.log(evt.target.value);
+    if (evt.target.value != this.genrePlaceholderValue) {
+      this.selectedGenre = evt.target.value;
+      this.groupByOrgId(this.selectedGenre);
+      this.observeGroup();
+    }
+  }
+
+  observeGroup(): void {
+    this.groupObservable$.subscribe((groups)=>this.groups = groups);
+    this.isLoading = false;
+  }
+
+  groupByOrgId(orgId): void {
+    this.groupObservable$ = this.groupService.getGroupsByOrganizationId(orgId);
+  }
+
+  toggleHideFullGroups(evt): void {
+    console.log('changed');
+    this.visible = !this.visible;
   }
 
 }

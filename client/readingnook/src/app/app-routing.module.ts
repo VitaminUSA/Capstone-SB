@@ -13,6 +13,7 @@ const routes: Routes = [{
     { path: 'home', component: HomeComponent },
     { path: 'groups', component: GroupsComponent },
     { path: 'addGroup', component: AddEditGroupComponent },
+    { path: 'editGroup', component: AddEditGroupComponent },
     { path: '**', component: HomeComponent }
   ]
 }];

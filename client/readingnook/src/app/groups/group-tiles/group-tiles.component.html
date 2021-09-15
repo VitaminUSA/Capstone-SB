@@ -1,4 +1,4 @@
-<div style="display:flexbox; border: 1px solid black;">
+<div class="groupTile" [ngClass]="group['Members'].length == group['MaxGroupSize'] ? 'fullGroup' : 'fullGroup'">
     <h3>{{group['OrganizationName']}}</h3>
     <p>{{group['GroupName']}}</p>
     <p>{{group['SponsorName']}}</p>
@@ -7,5 +7,7 @@
     <p>
         <input type="button" value="Join">
         <input type="button" value="Edit">
+        <!--I'm choosing to determine the mode programatically via the state, instead of using things such as the path-->
+        <a routerLink="../editGroup" [state]="{mode:'edit', modeId: 1, group:group, genres:genres}">Edit</a>
     </p>
 </div>

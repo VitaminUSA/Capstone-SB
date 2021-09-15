@@ -3,27 +3,27 @@
     <p>Groups Component</p>
 
     <section class="searchBar">
-        <p>Search Component</p>
-        <select name="genre" id="genre">
-            <option value="noGenre">Genre</option>
+        <select name="genre" id="genre" (change)="selectGenre($event)">
+            <option value="{{genrePlaceholderValue}}">Genre</option>
             <option *ngFor="let genre of allGenres" value="{{genre.id}}" [selected]="selectedGenre != undefined && selectedGenre == genre.id">
                 {{genre.name}}
             </option>
         </select>
-        <select name="orderBy" id="orderBy">
+        <!--TODO Order By-->
+        <!--<select name="orderBy" id="orderBy">
             <option value="noSelection" selected>Order By</option>
             <option value="orderByName">Name</option>
             <option value="orderByCapacity">Capacity</option>
-        </select>
-        <input type="checkbox" id="hideFullGroup" name="hideFullGroup">
+        </select>-->
+        <input type="checkbox" id="hideFullGroup" name="hideFullGroup" (change)="toggleHideFullGroups($event)">
         <label for="hideFullGroup">Hide Full Groups</label>
-        <input type="text" name="filterSearch" id="filterSearch">
-        <label for="filterSearch">Search</label>
+        <!--TODO: If I get around to it, allow filter by word search-->
+        <!--<input type="text" name="filterSearch" id="filterSearch">
+        <label for="filterSearch">Search</label>-->
         <span><a routerLink="../addGroup" routerLinkActive="active">Add Group</a></span>
     </section>
 
     <p>group-tiles-container</p>
-    <input type="button" value="Reset?" (click)="changeGroups()">
 
     <div class="flex-container" *ngIf="groupObservable$ | async as groups; else isLoading">
         <ng-container *ngIf="groups != undefined">
@@ -31,7 +31,7 @@
             <section *ngIf="groups.length > 0">
                 groups
                 <section *ngFor="let group of groups">
-                    <app-group-tiles [group]="group"></app-group-tiles>
+                    <app-group-tiles [genres]="allGenres" [group]="group" *ngIf="group['Members'].length == group['MaxGroupSize'] ? visible : true"></app-group-tiles>
                 </section>
             </section>
             
@@ -40,10 +40,4 @@
             </section>
         </ng-container>
     </div>
-
-    
-    
-    <!--<app-group-tiles-container [groups]="groupObservable$ | async"></app-group-tiles-container>-->
-    
-    <!--<app-add-edit-group [editGroupFlag]="editGroupFlag"></app-add-edit-group>-->
 </section>

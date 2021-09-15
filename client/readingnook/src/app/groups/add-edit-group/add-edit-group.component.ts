@@ -10,11 +10,15 @@ import { Group } from 'src/app/models/Group';
   styleUrls: ['./add-edit-group.component.css']
 })
 export class AddEditGroupComponent implements OnInit {
-  @Input() editGroupFlag: boolean;
-  addGroupFlag = true;
+ 
   addGroupForm: FormGroup;
   allGenres;
+  genres;
+  state;
   @Input() group?: Group;
+
+  modeId: number;
+  mode: string;
 
   //TODO: Validators for form fields
 
@@ -32,12 +36,12 @@ export class AddEditGroupComponent implements OnInit {
   //make this accept a group and set those values
   editGroupForm(): void {
     this.addGroupForm = this.fb.group({
-      groupName: ['test', Validators.required],
-      genreName: ['test', Validators.required],
-      sponsorName: ['test', Validators.required],
-      sponsorPhone: ['test', Validators.required],
-      sponsorEmail: ['test', Validators.required],
-      groupSize: ['20', Validators.required]
+      groupName: [this.group['GroupName'], Validators.required],
+      genreName: [this.group['OrganizationName'], Validators.required],
+      sponsorName: [this.group['SponsorName'], Validators.required],
+      sponsorPhone: [this.group['SponsorPhone'], Validators.required],
+      sponsorEmail: [this.group['SponsorEmail'], Validators.required],
+      groupSize: [this.group['MaxGroupSize'], Validators.required]
     });
   }
 
@@ -66,12 +70,28 @@ export class AddEditGroupComponent implements OnInit {
   constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService) {}
 
   ngOnInit(): void {
-    this.allGenres = this.genreService.getAllGenres().subscribe((allGenres)=>{this.allGenres=allGenres});
-    console.log(this.editGroupFlag);
-    if (this.editGroupFlag) {
-      this.editGroupForm();
+    if (this.state === undefined) {
+      this.state = this.location.getState();
+      this.genres = this.state['genres'];
+    }
+    if (this.state['genres'] === undefined) {
+      this.genres = this.genreService.getAllGenres().subscribe((genres)=>{this.genres=genres});
+    } else {
+      this.genres = this.state['genres'];
+    }
+
+    if (this.state['modeId'] === 1 && this.state['mode'] === 'edit') {
+      this.mode = this.state['mode'];
+      this.modeId = this.state['modeId'];
+      if (this.state['group'] === undefined) {
+        console.log('error no group info to edit');
+      } else {
+        this.group = this.state['group'];
+        this.editGroupForm();
+      }
     } else {
       this.createForm();
     }
+    console.log(this.state);
   }
 }
