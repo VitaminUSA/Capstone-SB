@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GenreService } from '../../services/genre.service';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Group } from 'src/app/models/Group';
 import { GroupService } from 'src/app/services/group.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-group',
@@ -26,6 +27,7 @@ export class AddEditGroupComponent implements OnInit {
 
   createForm(): void {
     this.groupForm = this.fb.group({
+      GroupId: [''],
       GroupName: ['', Validators.required],
       OrganizationName: ['', Validators.required],
       SponsorName: ['', Validators.required],
@@ -52,6 +54,18 @@ export class AddEditGroupComponent implements OnInit {
     this.groupForm.reset();
   }
 
+  goBack(): void {
+    this.router.navigateByUrl('/groups');
+  }
+
+  deleteGroup(groupId: string): void {
+    console.log('delete group')
+    this.groupService.deleteGroup(groupId).subscribe((res)=>{
+      console.log(res);
+      this.router.navigateByUrl('/groups');
+    });
+  }
+
   submitGroupForm(group: Group): void {
     console.log(group);
     if(this.groupForm.invalid) {
@@ -63,17 +77,20 @@ export class AddEditGroupComponent implements OnInit {
     } else {
       this.groupService.addGroup(group).subscribe((res)=>{group = res})
     }
-  
-    console.log(group);
-    this.location.back(); //Todo: Preserve previous state of page? Or do a popup for this add group entirely
+    this.router.navigateByUrl('/editGroup', {state: {mode: 'edit', modeId: 1, group:group, genres:this.genres, origin: '/groups'}});
   }
 
-  constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService, private groupService: GroupService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private location: Location, 
+    private genreService: GenreService, 
+    private groupService: GroupService
+    ) {}
 
   ngOnInit(): void {
     if (this.state === undefined) {
       this.state = this.location.getState();
-      this.genres = this.state['genres'];
     }
     if (this.state['genres'] === undefined) {
       this.genres = this.genreService.getAllGenres().subscribe((genres)=>{this.genres=genres});
@@ -89,6 +106,10 @@ export class AddEditGroupComponent implements OnInit {
       } else {
         this.group = this.state['group'];
         this.groupId = this.group['GroupId'];
+        if (this.state['refresh'] === 1) {
+          this.groupService.getGroupById(this.groupId).subscribe((result)=>{this.group = result});
+        }
+        
         this.editGroupForm();
       }
     } else {

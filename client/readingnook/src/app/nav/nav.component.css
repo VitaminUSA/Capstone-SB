@@ -1,20 +1,13 @@
-ul {
-    position: relative;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+nav {
+    display: flex;
+    background-color: #E8A87C;
 }
 
-a {
-    float: left;
-    text-align: center;
-    padding: 14px 16px;
-    background-color: blue;
-    text-decoration: none;
-    display: inline-block;
-    color: white;
-}
-
-.navBar {
+.navItem {
+    display: flex;
+    flex-grow: 1;
     border: 1px solid black;
+    font-size: 1.5em;
+    color: white;
+    justify-content: center;
 }

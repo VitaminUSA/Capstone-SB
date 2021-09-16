@@ -44,11 +44,16 @@ export class GroupsComponent implements OnInit {
 
   selectGenre(evt): void {
     console.log(evt.target.value);
-    if (evt.target.value != this.genrePlaceholderValue) {
-      this.selectedGenre = evt.target.value;
-      this.groupByOrgId(this.selectedGenre);
+    if (evt.target.value == this.genrePlaceholderValue) {
+      this.allGroups();
       this.observeGroup();
+      return
     }
+
+    this.selectedGenre = evt.target.value;
+    this.groupByOrgId(this.selectedGenre);
+    this.observeGroup();
+    return;
   }
 
   observeGroup(): void {
@@ -58,6 +63,10 @@ export class GroupsComponent implements OnInit {
 
   groupByOrgId(orgId): void {
     this.groupObservable$ = this.groupService.getGroupsByOrganizationId(orgId);
+  }
+
+  allGroups(): void {
+    this.groupObservable$ = this.groupService.getAllGroups();
   }
 
   toggleHideFullGroups(evt): void {

@@ -1,6 +1,7 @@
 footer {
     height: 50px;
     border-top: 3px solid black;
+    background-color: #85dcb8;
 }
 
 footer>* {

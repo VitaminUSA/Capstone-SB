@@ -1,4 +1,19 @@
 .readingGroups {
     border: 1px solid black;
     border-color: black;
+    background-color: whitesmoke;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchBar {
+    background-color: lightgray;
+}
+
+.noResults {
+    font-size: 3em;
+    text-align: center;
 }

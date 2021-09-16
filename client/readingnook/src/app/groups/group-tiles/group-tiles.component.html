@@ -1,4 +1,4 @@
-<div class="groupTile" [ngClass]="group['Members'].length == group['MaxGroupSize'] ? 'fullGroup' : 'fullGroup'">
+<section class="groupTile" [ngClass]="group['Members'].length == group['MaxGroupSize'] ? 'fullGroup' : 'fullGroup'">
     <h3>{{group['OrganizationName']}}</h3>
     <p>{{group['GroupName']}}</p>
     <p>{{group['SponsorName']}}</p>
@@ -6,7 +6,7 @@
     <p>{{group['Members'].length}} / {{group['MaxGroupSize']}}</p>
     <p>
         <!--I'm choosing to determine the mode programatically via the state, instead of using things such as the path-->
-        <input type="button" value="Join">
-        <input type="button" value="Edit" routerLink="../editGroup" [state]="{mode:'edit', modeId: 1, group:group, genres:genres}">
+        <input type="button" value="Join" routerLink="../addMember" [state]="{mode: 'add', modeId: 1, group:group, groupId: groupId, origin: '/groups'}">
+        <input type="button" value="Edit" routerLink="../editGroup" [state]="{mode:'edit', modeId: 1, group:group, genres:genres, origin: '/groups'}">
     </p>
-</div>
+</section>

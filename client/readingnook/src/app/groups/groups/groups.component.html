@@ -25,17 +25,15 @@
 
     <p>group-tiles-container</p>
 
-    <div class="flex-container" *ngIf="groupObservable$ | async as groups; else isLoading">
+    <div *ngIf="groupObservable$ | async as groups; else isLoading">
         <ng-container *ngIf="groups != undefined">
-            <p>Results: {{groups.length}}</p>
-            <section *ngIf="groups.length > 0">
-                groups
-                <section *ngFor="let group of groups">
+            <ng-container *ngIf="groups.length > 0">
+                <section class="groupSection" *ngFor="let group of groups">
                     <app-group-tiles [genres]="allGenres" [group]="group" *ngIf="group['Members'].length == group['MaxGroupSize'] ? visible : true"></app-group-tiles>
                 </section>
-            </section>
+            </ng-container>
             
-            <section *ngIf="groups.length == 0">
+            <section class="noResults" *ngIf="groups.length == 0">
                 No Groups Found
             </section>
         </ng-container>

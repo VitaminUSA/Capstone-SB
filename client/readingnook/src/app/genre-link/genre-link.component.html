@@ -1,8 +1,9 @@
 <p>genre-link-component</p>
-<section>
-    <ul>
-        <li *ngFor="let genre of allGenres">
-            <input type="button" value="{{genre.name}} {{genre.description}}" routerLink="../groups" [state]="{searchFilter:1, organization:genre}">
-        </li>
-    </ul>
+<section class="container">
+    <ng-container *ngFor="let genre of allGenres">
+        <div class="box" routerLink="../groups" [state]="{searchFilter:1, organization:genre}">
+            <h1 class="genreName">{{genre.name}}</h1>
+            <p class="genreDescription">{{genre.description}}</p>
+        </div>
+    </ng-container>
 </section>

@@ -1,22 +1,17 @@
-<section class="navBar">
-    <span>
-        <p>nav</p>
-        <nav>
-        <ul>
-            <li [ngClass]="{active: isActive}">
-                <a routerLink="home" routerLinkActive="active">Home</a>
-            </li>
-            <li [ngClass]="{active: isActive}">
-                <a routerLink="genres" routerLinkActive="active">Genres</a>
-            </li>
-            <li [ngClass]="{active: isActive}">
-                <a routerLink="groups" [state]="{id:1, name:'Angular'}" routerLinkActive="active">Groups</a> 
-            </li>
-        </ul>
-        </nav>
-    </span>
-    <br> <!--Need to use styling for this instead of using html for styling-->
-    <br>
-</section>
+
+<nav class="navBar">
+    <div class ="navItem" [ngClass]="{active: isActive}" routerLink="home" routerLinkActive="active">
+        Home
+    </div>
+    <div class ="navItem" [ngClass]="{active: isActive}" routerLink="genres" routerLinkActive="active">
+        Genres
+    </div>
+    <div class ="navItem" [ngClass]="{active: isActive}" routerLink="groups" [state]="{id:1, name:'Angular'}" routerLinkActive="active">
+        Groups 
+    </div>
+</nav>
+<br> <!--Need to use styling for this instead of using html for styling-->
+<br>
+
 
   

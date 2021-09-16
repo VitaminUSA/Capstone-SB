@@ -10,12 +10,14 @@ export class GroupTilesComponent implements OnInit {
 
   @Input() group: Group;
   @Input() genres;
+  groupId;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.group);
     console.log(this.genres);
+    this.groupId = this.group['GroupId'];
   }
 
 }
