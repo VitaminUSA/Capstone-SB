@@ -5,9 +5,8 @@
     <p>{{group['SponsorEmail']}}</p>
     <p>{{group['Members'].length}} / {{group['MaxGroupSize']}}</p>
     <p>
-        <input type="button" value="Join">
-        <input type="button" value="Edit">
         <!--I'm choosing to determine the mode programatically via the state, instead of using things such as the path-->
-        <a routerLink="../editGroup" [state]="{mode:'edit', modeId: 1, group:group, genres:genres}">Edit</a>
+        <input type="button" value="Join">
+        <input type="button" value="Edit" routerLink="../editGroup" [state]="{mode:'edit', modeId: 1, group:group, genres:genres}">
     </p>
 </div>

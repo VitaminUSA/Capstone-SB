@@ -3,6 +3,7 @@ import { GenreService } from '../../services/genre.service';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Group } from 'src/app/models/Group';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-add-edit-group',
@@ -11,11 +12,12 @@ import { Group } from 'src/app/models/Group';
 })
 export class AddEditGroupComponent implements OnInit {
  
-  addGroupForm: FormGroup;
+  groupForm: FormGroup;
   allGenres;
   genres;
   state;
-  @Input() group?: Group;
+  group;
+  groupId;
 
   modeId: number;
   mode: string;
@@ -23,51 +25,50 @@ export class AddEditGroupComponent implements OnInit {
   //TODO: Validators for form fields
 
   createForm(): void {
-    this.addGroupForm = this.fb.group({
-      groupName: ['', Validators.required],
-      genreName: ['', Validators.required],
-      sponsorName: ['', Validators.required],
-      sponsorPhone: ['', Validators.required],
-      sponsorEmail: ['', Validators.required],
-      groupSize: ['0', Validators.required]
+    this.groupForm = this.fb.group({
+      GroupName: ['', Validators.required],
+      OrganizationName: ['', Validators.required],
+      SponsorName: ['', Validators.required],
+      SponsorPhone: ['', Validators.required],
+      SponsorEmail: ['', Validators.required],
+      MaxGroupSize: ['0', Validators.required]
     });
   }
 
   //make this accept a group and set those values
   editGroupForm(): void {
-    this.addGroupForm = this.fb.group({
-      groupName: [this.group['GroupName'], Validators.required],
-      genreName: [this.group['OrganizationName'], Validators.required],
-      sponsorName: [this.group['SponsorName'], Validators.required],
-      sponsorPhone: [this.group['SponsorPhone'], Validators.required],
-      sponsorEmail: [this.group['SponsorEmail'], Validators.required],
-      groupSize: [this.group['MaxGroupSize'], Validators.required]
-    });
-  }
-
-  groupRetrieved(group: Group): void {
-    this.group = group;
-    this.addGroupForm.setValue({
-      id: this.group.id,
-      groupName: this.group.groupName,
-      genreName: this.group.genreName,
-      sponsorName: this.group.sponsorName,
-      sponsorPhone: this.group.sponsorPhone,
-      sponsorEmail: this.group.sponsorEmail,
-      groupSize: this.group.maxGroupSize
+    this.groupForm = this.fb.group({
+      GroupId: [this.group['GroupId'], Validators.required],
+      GroupName: [this.group['GroupName'], Validators.required],
+      OrganizationName: [this.group['OrganizationName'], Validators.required],
+      SponsorName: [this.group['SponsorName'], Validators.required],
+      SponsorPhone: [this.group['SponsorPhone'], Validators.required],
+      SponsorEmail: [this.group['SponsorEmail'], Validators.required],
+      MaxGroupSize: [this.group['MaxGroupSize'], Validators.required]
     });
   }
 
   resetAddFormGroup(): void {
-    this.addGroupForm.reset();
+    this.groupForm.reset();
   }
 
-  addGroup(group: Group): void {
+  submitGroupForm(group: Group): void {
+    console.log(group);
+    if(this.groupForm.invalid) {
+      console.log("Invalid Form");
+      return;
+    }
+    if (this.modeId === 1) {
+      this.groupService.updateGroup(group).subscribe((res)=>{group = res})
+    } else {
+      this.groupService.addGroup(group).subscribe((res)=>{group = res})
+    }
+  
     console.log(group);
     this.location.back(); //Todo: Preserve previous state of page? Or do a popup for this add group entirely
   }
 
-  constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService) {}
+  constructor(private fb: FormBuilder, private location: Location, private genreService: GenreService, private groupService: GroupService) {}
 
   ngOnInit(): void {
     if (this.state === undefined) {
@@ -87,6 +88,7 @@ export class AddEditGroupComponent implements OnInit {
         console.log('error no group info to edit');
       } else {
         this.group = this.state['group'];
+        this.groupId = this.group['GroupId'];
         this.editGroupForm();
       }
     } else {

@@ -1,19 +1,30 @@
 <section>
     <!--Dynamic Label-->
     <p [innerHTML]="modeId===1 ? 'Edit Group' : 'Add Group'"></p>
-    <form [formGroup]="addGroupForm">
-        <input type="text" id="groupName" autofocus formControlName="groupName" value="">
-        <select name="genreName" id="genreName" formControlName="genreName">
+    <form [formGroup]="groupForm">
+        <input type="hidden" name="groupId" formControlName="GroupId">
+        <input type="text" id="groupName" autofocus formControlName="GroupName" value="">
+        <select name="genreName" id="genreName" formControlName="OrganizationName">
             <option *ngFor="let genre of genres" value="{{genre['name']}}">{{genre['name']}}</option>
         </select>
         <label for="sponsorName">Sponsor Name</label>
-        <input type="text" id="sponsorName" formControlName="sponsorName">
+        <input type="text" id="sponsorName" formControlName="SponsorName">
         <label for="sponsorPhone">Sponsor Phone</label>
-        <input type="text" id="sponsorPhone" formControlName="sponsorPhone">
+        <input type="text" id="sponsorPhone" formControlName="SponsorPhone">
         <label for="sponsorEmail">Sponsor Email</label>
-        <input type="text" id="sponsorEmail" formControlName="sponsorEmail">
+        <input type="text" id="sponsorEmail" formControlName="SponsorEmail">
         <label for="maxGroupSize">Group Size</label>
-        <input type="number" id="maxGroupSize" value="0" min="0" max="100" step="1" formControlName="groupSize" [attr.disabled]="modeId===1 ? '' : null">
-        <input type="button" [value]="modeId===1 ? 'Save' : 'Add'" (click)="addGroup(addGroupForm.value)">
+        <input type="number" id="maxGroupSize" value="0" min="0" max="100" step="1" formControlName="MaxGroupSize" [attr.disabled]="modeId===1 ? '' : null">
+        <input type="button" [value]="modeId===1 ? 'Save' : 'Add'" (click)="submitGroupForm(groupForm.value)">
+        <input type="button" value="Cancel TODO">
+        <input type="button" value="Delete TODO">
+        <input type="button" value="Add Member" routerLink="../addMember" [state]="{modeId: 1, mode: 'add', groupId: groupId}">
+        
     </form>
+    <ng-container *ngFor="let member of group.Members">
+        <p>{{member['MemberName']}}</p>
+        <p>{{member['MemberPhone']}}</p>
+        <p>{{member['MemberEmail']}}</p>
+        <input type="button" value="Edit Member" routerLink="../editMember" [state]="{modeId: 2, mode: 'edit', member: member, groupId: groupId}">
+    </ng-container>
 </section>

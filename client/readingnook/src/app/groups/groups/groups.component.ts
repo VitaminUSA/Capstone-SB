@@ -1,9 +1,7 @@
 import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
-import { Group } from 'src/app/models/Group';
+import { Component, OnInit } from '@angular/core';
+
 import { GenreService } from 'src/app/services/genre.service';
 import { GroupService } from 'src/app/services/group.service';
 

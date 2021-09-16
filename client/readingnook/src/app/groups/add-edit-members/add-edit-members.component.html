@@ -1,0 +1,13 @@
+<p>add-edit-members works!</p>
+<form [formGroup]="memberForm">
+    <p>{{groupId}}</p>
+    <input type="hidden" name="groupId" formControlName="GroupId">
+    <input type="hidden" name="memberId" formControlName="MemberId">
+    <label for="memberName">Name</label>
+    <input type="text" name="memberName" formControlName="MemberName">
+    <label for="memberEmail">Email</label>
+    <input type="text" name="memberEmail" formControlName="MemberEmail">
+    <label for="memberPhone">Phone</label>
+    <input type="text" name="memberPhone" formControlName="MemberPhone">
+    <input type="button" value="Save" (click)="submitMemberForm(memberForm.value)">
+</form>

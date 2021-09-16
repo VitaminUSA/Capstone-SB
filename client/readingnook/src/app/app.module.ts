@@ -17,6 +17,7 @@ import { HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GroupTilesContainerComponent } from './groups/group-tiles-container/group-tiles-container.component';
 import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.component';
+import { AddEditMembersComponent } from './groups/add-edit-members/add-edit-members.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AddEditGroupComponent } from './groups/add-edit-group/add-edit-group.co
     GroupsComponent,
     GroupTilesComponent,
     GroupTilesContainerComponent,
-    AddEditGroupComponent
+    AddEditGroupComponent,
+    AddEditMembersComponent
   ],
   imports: [
     BrowserModule,

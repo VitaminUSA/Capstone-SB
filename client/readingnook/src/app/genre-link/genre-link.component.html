@@ -2,7 +2,7 @@
 <section>
     <ul>
         <li *ngFor="let genre of allGenres">
-            <a routerLink="../groups" [state]="{searchFilter:1, organization:genre}">{{genre.name}}</a>
+            <input type="button" value="{{genre.name}} {{genre.description}}" routerLink="../groups" [state]="{searchFilter:1, organization:genre}">
         </li>
     </ul>
 </section>
