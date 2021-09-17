@@ -7,7 +7,7 @@
 
 Client:
 
-1. In the angular CLI navigate to the client directory
+1. In the angular CLI navigate to the client directory `cd client/readingnook`
 2. run `npm install`
 3. run `ng serve`
 
