@@ -1,6 +1,4 @@
-<section>
-    <input type="button" value="Go Back" (click)="goBack()">
-</section>
+<input class="returnButton" type="button" value="Go Back" (click)="goBack()">
 
 <section class="addGroupForm">
     <form [formGroup]="groupForm">
@@ -22,18 +20,17 @@
         <input type="number" id="maxGroupSize" value="0" min="0" max="100" step="1" formControlName="MaxGroupSize" [attr.disabled]="modeId===1 ? '' : null">
         <input type="button" [value]="modeId===1 ? 'Save' : 'Add'" (click)="submitGroupForm(groupForm.value)">
         <input type="button" value="Cancel" routerLink="../groups">
-        <ng-container *ngIf="modeId===1">
-            <input type="button" id="formOperation" value="Delete" (click)=deleteGroup(groupId)>
-            
-        </ng-container>
+        <input *ngIf="modeId===1" type="button" id="formOperation" value="Delete" (click)=deleteGroup(groupId)>
     </form>
+    <section *ngIf="modeId===1"></section>
+    <input [attr.disabled]="group.Members.length >= group.MaxGroupSize ? '' : null" class="addMember" type="button" value="Add Member" routerLink="../addMember" [state]="{modeId: 1, mode: 'add', group: group, groupId: groupId, origin: '/editGroup'}">
 </section>
-<section *ngIf="group !== undefined">
-    <input type="button" id="formOperation1" value="Add Member" routerLink="../addMember" [state]="{modeId: 1, mode: 'add', group: group, groupId: groupId, origin: '/editGroup'}">
-        <div class="members" *ngFor="let member of group.Members">
-            <p>{{member['MemberName']}}</p>
-            <p>{{member['MemberPhone']}}</p>
-            <p>{{member['MemberEmail']}}</p>
-            <input type="button" value="Edit Member" routerLink="../editMember" [state]="{modeId: 2, mode: 'edit', group: group, member: member, groupId: groupId, origin: '/editGroup'}">
-        </div>
+ <!-- cleanup groupId-->
+<section *ngIf="group !== undefined" class="members">
+    <div class="member" *ngFor="let member of group.Members">
+        <p>{{member['MemberName']}}</p>
+        <p>{{member['MemberPhone']}}</p>
+        <p>{{member['MemberEmail']}}</p>
+        <input type="button" value="Edit Member" routerLink="../editMember" [state]="{modeId: 2, mode: 'edit', group: group, member: member, groupId: groupId, origin: '/editGroup'}">
+    </div>
 </section>

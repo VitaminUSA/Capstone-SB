@@ -2,21 +2,21 @@
 	{
 		"name": "Horror",
 		"id": "Org1",
-		"description": "This is organization 1"
+		"description": "Make your hair stand on end!"
 	},
 	{
 		"name": "Comedy",
 		"id": "Org2",
-		"description": "This is organization 2"
+		"description": "Laugh your booty off!"
     },
     {
 		"name": "Sci-Fi",
 		"id": "Org3",
-		"description": "This is organization 3" 
+		"description": "Explore your wildest futuristic fantasies!" 
 	},
 	{
 		"name": "Romance",
 		"id": "Org4",
-		"description": "This is organization 4"
+		"description": "Let yourself be wooed by these heartfelt novels!"
 	}
 ]

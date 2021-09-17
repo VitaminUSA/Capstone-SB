@@ -1,19 +1,26 @@
 .container {
     display: flex;
-    height: 100vh;
     gap: 25px;
-
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
+    margin-bottom: 5em;
 }
 
-[class ^="box"] {
-    width: 140px;
-    height: 140px;
-    background-color: skyblue;
+.genreLink {
+    width: 20em;
+    height: 14em;
+    background-color: lightblue;
     border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 25%;
+}
+
+.genreLink:hover {
+    background-color: white; 
+    color: #555555;
 }

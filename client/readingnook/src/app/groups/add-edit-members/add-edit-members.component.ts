@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Group } from 'src/app/models/Group';
 import { Member } from 'src/app/models/Member';
 import { GroupService } from 'src/app/services/group.service';
 
@@ -36,18 +35,22 @@ export class AddEditMembersComponent implements OnInit {
       GroupId: [this.groupId, Validators.required],
       MemberId: [this.member['MemberId'], Validators.required],
       MemberName: [this.member['MemberName'], Validators.required],
-      MemberEmail: [this.member['MemberEmail'], Validators.required],
+      MemberEmail: [this.member['MemberEmail'], Validators.email],
       MemberPhone: [this.member['MemberPhone'], Validators.required]
     });
   }
 
   submitMemberForm(member: Member): void {
+    //TODO: Add more descriptive user errors through the use of validators
+    if(this.memberForm.invalid) {
+      alert('Invalid Data');
+      return;
+    }
+
     if (this.state['modeId'] === 1 && this.state['mode'] === 'add') {
-      console.log('add member');
       this.groupService.addMemberToGroup(this.groupId, member).subscribe((res)=>{this.member = res});
       
     } else {
-      console.log('edit member');
       this.groupService.editMemberInGroup(this.groupId, member).subscribe((res)=>{this.member = res});
       
     }
@@ -64,23 +67,25 @@ export class AddEditMembersComponent implements OnInit {
 
   deleteMember(member: Member): void {
 
-    this.groupService.getGroupById(this.groupId).subscribe((result)=>{this.group = result;})
-    console.log(this.group);
-    this.groupService.deleteMemberInGroup(this.groupId, member['MemberId']).subscribe((res)=>{
-      this.router.navigateByUrl(this.state['origin'], {state: {mode: 'edit', 
-      modeId: 1, 
-      group: this.group, 
-      refresh: 1}});
-    });
+    if (confirm(`Are you sure you want to delete ${member['MemberName']}`)) {
+      this.groupService.getGroupById(this.groupId).subscribe((result)=>{this.group = result;})
+      this.groupService.deleteMemberInGroup(this.groupId, member['MemberId']).subscribe((res)=>{
+        alert(`Successfully Deleted ${member['MemberName']}`);
+        this.router.navigateByUrl(this.state['origin'], {state: {mode: 'edit', 
+        modeId: 1, 
+        group: this.group, 
+        refresh: 1}});
+      });
+      return;
+    }
+    alert('Did not delete');
   }
 
   constructor(private groupService: GroupService, private fb: FormBuilder, private location: Location, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.state);
     if (this.state === undefined) {
       this.state = this.location.getState();
-      console.log(this.state);
       this.operationMode = this.state['modeId'];
     }
 
@@ -91,14 +96,12 @@ export class AddEditMembersComponent implements OnInit {
     this.groupId = this.group['GroupId'];
     
     if (this.state['modeId'] === 1 && this.state['mode'] === 'add') {
-      console.log('add');
       this.createForm();
     } else {
       this.member = this.state['member'];
       if (this.member !== undefined) {
         this.memberId = this.member['MemberId'];
       }
-      console.log('edit');
       this.editForm();
     }
     

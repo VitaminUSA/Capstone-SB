@@ -1,6 +1,7 @@
 nav {
     display: flex;
     background-color: #E8A87C;
+    margin-bottom: 10px;
 }
 
 .navItem {
@@ -10,4 +11,11 @@ nav {
     font-size: 1.5em;
     color: white;
     justify-content: center;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.navItem:hover {
+    background-color: white;
+    color: #E8A87C;
 }

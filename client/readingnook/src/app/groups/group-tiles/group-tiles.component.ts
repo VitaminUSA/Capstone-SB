@@ -15,8 +15,6 @@ export class GroupTilesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.group);
-    console.log(this.genres);
     this.groupId = this.group['GroupId'];
   }
 

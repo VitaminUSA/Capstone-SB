@@ -1,10 +1,7 @@
 <section class="readingGroups">
-
-    <p>Groups Component</p>
-
     <section class="searchBar">
         <select name="genre" id="genre" (change)="selectGenre($event)">
-            <option value="{{genrePlaceholderValue}}">Genre</option>
+            <option value="{{genrePlaceholderValue}}">All</option>
             <option *ngFor="let genre of allGenres" value="{{genre.id}}" [selected]="selectedGenre != undefined && selectedGenre == genre.id">
                 {{genre.name}}
             </option>
@@ -22,20 +19,18 @@
         <label for="filterSearch">Search</label>-->
         <input type="button" value="Add Group" routerLink="../addGroup" routerLinkActive="active">
     </section>
-
-    <p>group-tiles-container</p>
-
-    <div *ngIf="groupObservable$ | async as groups; else isLoading">
-        <ng-container *ngIf="groups != undefined">
-            <ng-container *ngIf="groups.length > 0">
-                <section class="groupSection" *ngFor="let group of groups">
-                    <app-group-tiles [genres]="allGenres" [group]="group" *ngIf="group['Members'].length == group['MaxGroupSize'] ? visible : true"></app-group-tiles>
-                </section>
-            </ng-container>
-            
-            <section class="noResults" *ngIf="groups.length == 0">
-                No Groups Found
+</section>
+<div class="tilesContainer" *ngIf="groupObservable$ | async as groups; else isLoading">
+    <ng-container *ngIf="groups != undefined">
+        <ng-container *ngIf="groups.length > 0">
+            <section class="groupSection" *ngFor="let group of groups">
+                <app-group-tiles class="groupTile" [genres]="allGenres" [group]="group" *ngIf="group['Members'].length == group['MaxGroupSize'] ? visible : true"></app-group-tiles>
             </section>
         </ng-container>
-    </div>
-</section>
+            
+        <section class="noResults" *ngIf="groups.length == 0">
+            No Groups Found
+        </section>
+    </ng-container>
+</div>
+

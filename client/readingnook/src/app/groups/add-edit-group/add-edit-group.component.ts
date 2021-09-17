@@ -45,7 +45,7 @@ export class AddEditGroupComponent implements OnInit {
       OrganizationName: [this.group['OrganizationName'], Validators.required],
       SponsorName: [this.group['SponsorName'], Validators.required],
       SponsorPhone: [this.group['SponsorPhone'], Validators.required],
-      SponsorEmail: [this.group['SponsorEmail'], Validators.required],
+      SponsorEmail: [this.group['SponsorEmail'], Validators.email],
       MaxGroupSize: [this.group['MaxGroupSize'], Validators.required]
     });
   }
@@ -59,24 +59,25 @@ export class AddEditGroupComponent implements OnInit {
   }
 
   deleteGroup(groupId: string): void {
-    console.log('delete group')
     this.groupService.deleteGroup(groupId).subscribe((res)=>{
-      console.log(res);
       this.router.navigateByUrl('/groups');
     });
   }
 
   submitGroupForm(group: Group): void {
-    console.log(group);
-    if(this.groupForm.invalid) {
-      console.log("Invalid Form");
+    //TODO: Add Better user feedback/error messages
+    if(this.groupForm.invalid || group['MaxGroupSize'] < 1) {
+      alert('Invalid Data');
       return;
     }
     if (this.modeId === 1) {
-      this.groupService.updateGroup(group).subscribe((res)=>{group = res})
+      this.groupService.updateGroup(group).subscribe((res)=>{group = res});
+      alert('SuccessFully Updated');
     } else {
-      this.groupService.addGroup(group).subscribe((res)=>{group = res})
+      this.groupService.addGroup(group).subscribe((res)=>{group = res});
+      alert('SuccessFully Added');
     }
+    
     this.router.navigateByUrl('/editGroup', {state: {mode: 'edit', modeId: 1, group:group, genres:this.genres, origin: '/groups'}});
   }
 
@@ -101,9 +102,7 @@ export class AddEditGroupComponent implements OnInit {
     if (this.state['modeId'] === 1 && this.state['mode'] === 'edit') {
       this.mode = this.state['mode'];
       this.modeId = this.state['modeId'];
-      if (this.state['group'] === undefined) {
-        console.log('error no group info to edit');
-      } else {
+      if (this.state['group'] !== undefined) {
         this.group = this.state['group'];
         this.groupId = this.group['GroupId'];
         if (this.state['refresh'] === 1) {
@@ -115,6 +114,5 @@ export class AddEditGroupComponent implements OnInit {
     } else {
       this.createForm();
     }
-    console.log(this.state);
   }
 }

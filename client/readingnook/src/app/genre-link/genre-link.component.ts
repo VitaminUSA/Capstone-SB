@@ -15,6 +15,5 @@ export class GenreLinkComponent implements OnInit {
 
   ngOnInit(): void {
     this.allGenres = this.genreService.getAllGenres().subscribe((allGenres)=>{this.allGenres=allGenres});
-    console.log(this.location.getState());
   }
 }

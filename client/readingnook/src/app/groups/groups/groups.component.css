@@ -7,13 +7,27 @@
     width: 90%;
     display: flex;
     flex-direction: column;
-}
-
-.searchBar {
     background-color: lightgray;
+    text-align: right;
+    margin-bottom: 10px;
 }
 
 .noResults {
     font-size: 3em;
     text-align: center;
+}
+
+.tilesContainer {
+    display: flex;
+    gap: 25px;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-bottom: 10em;
+}
+
+.groupTile {
+    width: 14em;
+    height: 14em;
+    display: flex;
+    flex-direction: column;
 }
